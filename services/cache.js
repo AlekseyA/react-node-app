@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const redis = require('redis');
 const util = require('util');
+const config = require('../config/keys');
 
-const REDIS_URL = 'redis://127.0.0.1:6379';
+
 const CACHE_EXPIRATION = 24 * 60 * 60; // one day
-const client = redis.createClient(REDIS_URL);
+const client = redis.createClient(config.redisUrl);
 
 client.hget = util.promisify(client.hget);
 
